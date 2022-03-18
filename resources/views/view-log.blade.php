@@ -10,8 +10,6 @@
                         minLines: {{ config('filament-laravel-log.minLines') }},
                         fontSize: {{ config('filament-laravel-log.fontSize') }}
                     });
-
-                    window.editor = editor;
                 })
 
                 window.addEventListener('logContentUpdated', (e) => {
