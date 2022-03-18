@@ -37,7 +37,7 @@ class ViewLog extends Page
 
     public function booted()
     {
-        if (!filled(config('filament-laravel-log.logFile'))) {
+        if (! filled(config('filament-laravel-log.logFile'))) {
             throw new \Exception('[Filament Laravel Log]: The log file is not set.');
         }
 
@@ -64,6 +64,7 @@ class ViewLog extends Page
     public function writeLog($content = null): string
     {
         file_put_contents(config('filament-laravel-log.logFile'), $content);
+
         return $this->readLog();
     }
 }
