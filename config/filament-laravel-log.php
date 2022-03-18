@@ -22,7 +22,7 @@ return [
     'navigationLabel' => 'Logs',
 
     /**
-     * Navigation icon.
+     * Navigation slug.
      */
     'slug' => 'system-logs',
 

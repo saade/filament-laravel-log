@@ -1,4 +1,4 @@
-# Access `laravel.log` file through Filament admin panel
+# Access laravel log through Filament admin panel
 
 ![Log Viewer](./art/preview.jpeg)
 
@@ -64,7 +64,7 @@ This is the contents of the published config file:
 'navigationLabel' => 'Logs',
 
 /**
- * Navigation icon.
+ * Navigation slug.
  */
 'slug' => 'system-logs',
 
