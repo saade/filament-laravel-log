@@ -1,72 +1,98 @@
+# Access `laravel.log` file through Filament admin panel
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/support-ukraine.svg?t=1" />](https://supportukrainenow.org)
+![Log Viewer](./art/preview.jpeg)
 
-# :package_description
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/saade/filament-laravel-log.svg?style=flat-square)](https://packagist.org/packages/saade/filament-laravel-log)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/saade/filament-laravel-log/run-tests?label=tests)](https://github.com/saade/filament-laravel-log/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/saade/filament-laravel-log/Check%20&%20fix%20styling?label=code%20style)](https://github.com/saade/filament-laravel-log/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/saade/filament-laravel-log.svg?style=flat-square)](https://packagist.org/packages/saade/filament-laravel-log)
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/:vendor_slug/:package_slug/run-tests?label=tests)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/:vendor_slug/:package_slug/Check%20&%20fix%20styling?label=code%20style)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-<!--delete-->
----
-This repo can be used to scaffold a Laravel package. Follow these steps to get started:
+# Features
 
-1. Press the "Use template" button at the top of this repo to create a new repo with the contents of this skeleton.
-2. Run "php ./configure.php" to run a script that will replace all placeholders throughout all the files.
-3. Have fun creating your package.
-4. If you need help creating a package, consider picking up our <a href="https://laravelpackage.training">Laravel Package Training</a> video course.
----
-<!--/delete-->
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+- Jump between start and end of file
+- Refresh content
+- Clear logs
 
-## Support us
+### Upcoming
+- Support multiple log files
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/:package_name.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/:package_name)
+<br>
 
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
+## Support Filament
 
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+<a href="https://github.com/sponsors/danharrin">
+<img width="320" alt="filament-logo" src="https://filamentadmin.com/images/sponsor-banner.jpg">
+</a>
+
+<br>
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require :vendor_slug/:package_slug
-```
-
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag=":package_slug-migrations"
-php artisan migrate
+composer require saade/filament-laravel-log
 ```
 
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag=":package_slug-config"
+php artisan vendor:publish --tag="filament-laravel-log-config"
 ```
 
 This is the contents of the published config file:
 
 ```php
-return [
-];
+/**
+ * The log file to be read.
+ */
+'logFile' => storage_path('logs/laravel.log'),
+
+/**
+ * Navigation group.
+ */
+'navigationGroup' => 'System',
+
+/**
+ * Navigation icon.
+ */
+'navigationIcon' => 'heroicon-o-document-text',
+
+/**
+ * Navigation label.
+ */
+'navigationLabel' => 'Logs',
+
+/**
+ * Navigation icon.
+ */
+'slug' => 'system-logs',
+
+/**
+ * Maximum amount of lines that editor will render.
+ */
+'maxLines' => 50,
+
+/**
+ * Minimum amount of lines that editor will render.
+ */
+'minLines' => 10,
+
+/**
+ * Editor font size.
+ */
+'fontSize' => 12
 ```
 
 Optionally, you can publish the views using
 
 ```bash
-php artisan vendor:publish --tag=":package_slug-views"
+php artisan vendor:publish --tag="filament-laravel-log-views"
 ```
 
 ## Usage
 
-```php
-$variable = new VendorName\Skeleton();
-echo $variable->echoPhrase('Hello, VendorName!');
-```
+Just install the package and you're ready to go!
 
 ## Testing
 
@@ -88,7 +114,8 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- [Saade](https://github.com/saade)
+- [Laravel Forge](https://forge.laravel.com) - for the editor theme
 - [All Contributors](../../contributors)
 
 ## License
