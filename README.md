@@ -9,12 +9,11 @@
 
 # Features
 
-- Jump between start and end of file
-- Refresh content
-- Clear logs
-
-### Upcoming
-- Support multiple log files
+- Quickly jump between start and end of the file
+- Refresh log contents
+- Clear log contents
+- Search multiple files in multiple directories <sup>New in v1.1.0</sup>
+- Ignore file patterns <sup>New in v1.1.0</sup>
 
 <br>
 
@@ -34,6 +33,12 @@ You can install the package via composer:
 composer require saade/filament-laravel-log
 ```
 
+## Usage
+
+Just install the package and you're ready to go!
+
+## Configuration
+
 You can publish the config file with:
 
 ```bash
@@ -43,56 +48,94 @@ php artisan vendor:publish --tag="filament-laravel-log-config"
 This is the contents of the published config file:
 
 ```php
-/**
- * The log file to be read.
- */
-'logFile' => storage_path('logs/laravel.log'),
+<?php
 
-/**
- * Navigation group.
- */
-'navigationGroup' => 'System',
+return [
+    /**
+     * Secure the page behind a custom policy.
+     */
+    'authorization' => false,
 
-/**
- * Navigation icon.
- */
-'navigationIcon' => 'heroicon-o-document-text',
+    /**
+     * The directory(ies) containing the log files.
+     */
+    'logsDir' => [
+        storage_path('logs'),
+    ],
 
-/**
- * Navigation label.
- */
-'navigationLabel' => 'Logs',
+    /**
+     * Files to ignore when searching for log files.
+     * Accepts wildcards eg: *.log
+     */
+    'exclude' => [
+        //
+    ],
 
-/**
- * Navigation slug.
- */
-'slug' => 'system-logs',
+    /**
+     * Navigation group.
+     */
+    'navigationGroup' => 'System',
 
-/**
- * Maximum amount of lines that editor will render.
- */
-'maxLines' => 50,
+    /**
+     * Navigation icon.
+     */
+    'navigationIcon' => 'heroicon-o-document-text',
 
-/**
- * Minimum amount of lines that editor will render.
- */
-'minLines' => 10,
+    /**
+     * Navigation label.
+     */
+    'navigationLabel' => 'Logs',
 
-/**
- * Editor font size.
- */
-'fontSize' => 12
+    /**
+     * Navigation slug.
+     */
+    'slug' => 'system-logs',
+
+    /**
+     * Maximum amount of lines that editor will render.
+     */
+    'maxLines' => 50,
+
+    /**
+     * Minimum amount of lines that editor will render.
+     */
+    'minLines' => 10,
+
+    /**
+     * Editor font size.
+     */
+    'fontSize' => 12
+];
 ```
 
-Optionally, you can publish the views using
+## Authorization
+If you would like to prevent certain users from accessing your page, you should enable `authorization` in config
+```php
+// config/filament-laravel-log.php
 
-```bash
-php artisan vendor:publish --tag="filament-laravel-log-views"
+<?php
+return [
+    /**
+     * Secure the page behind a custom policy.
+     */
+    'authorization' => true,
+];
 ```
+and register an authorization callback inside of a `ServiceProvider::boot()` method.
 
-## Usage
 
-Just install the package and you're ready to go!
+```php
+// app/Providers/AppServiceProvider.php
+
+<?php
+
+public function boot()
+{
+    ViewLog::can(function (User $user) {
+        return $user->role === Role::Admin;
+    });
+}
+```
 
 ## Testing
 
@@ -116,6 +159,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 - [Saade](https://github.com/saade)
 - [Laravel Forge](https://forge.laravel.com) - for the editor theme
+- [ryangjchandler's Filament Log](https://github.com/ryangjchandler/filament-log) - based of for the authorization and multiple log files feature
 - [All Contributors](../../contributors)
 
 ## License

@@ -2,9 +2,24 @@
 
 return [
     /**
-     * The log file to be read.
+     * Secure the page behind a custom policy.
      */
-    'logFile' => storage_path('logs/laravel.log'),
+    'authorization' => true,
+
+    /**
+     * The directory(ies) containing the log files.
+     */
+    'logsDir' => [
+        storage_path('logs'),
+    ],
+
+    /**
+     * Files to ignore when searching for log files.
+     * Accepts wildcards eg: *.log
+     */
+    'exclude' => [
+        //
+    ],
 
     /**
      * Navigation group.
