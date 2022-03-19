@@ -4,6 +4,11 @@ return [
     'page' => [
         'title' => 'Site Logs'
     ],
+    'forms' => [
+        'search' => [
+            'placeholder' => 'Select or search a log file...'
+        ]
+    ],
     'modals' => [
         'clear' => [
             'heading' => 'Clear Site Logs?',
