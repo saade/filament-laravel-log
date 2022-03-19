@@ -2,11 +2,11 @@
 
 namespace Saade\FilamentLaravelLog\Pages;
 
-use Filament\Pages\Page;
-use Saade\FilamentLaravelLog\Pages\Concerns\HasSecurity;
 use Filament\Forms;
+use Filament\Pages\Page;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
+use Saade\FilamentLaravelLog\Pages\Concerns\HasSecurity;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
@@ -73,7 +73,7 @@ class ViewLog extends Page
                 ->disableLabel()
                 ->placeholder(__('log::filament-laravel-log.forms.search.placeholder'))
                 ->options(fn () => $this->getFileNames($this->getFinder())->take(5))
-                ->getSearchResultsUsing(fn (string $query) => $this->getFileNames($this->getFinder()->name("*{$query}*")))
+                ->getSearchResultsUsing(fn (string $query) => $this->getFileNames($this->getFinder()->name("*{$query}*"))),
         ];
     }
 
