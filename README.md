@@ -9,6 +9,7 @@
 
 # Features
 
+- Syntax highlighting
 - Quickly jump between start and end of the file
 - Refresh log contents
 - Clear log contents
