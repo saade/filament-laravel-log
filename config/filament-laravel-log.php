@@ -4,7 +4,7 @@ return [
     /**
      * Secure the page behind a custom policy.
      */
-    'authorization' => true,
+    'authorization' => false,
 
     /**
      * The directory(ies) containing the log files.
