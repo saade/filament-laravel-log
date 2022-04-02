@@ -2,6 +2,14 @@
 
 All notable changes to `filament-laravel-log` will be documented in this file.
 
+## v1.1.1 - 2022-04-02
+
+## What's Changed
+
+- fix: no authorization by default by @saade in https://github.com/saade/filament-laravel-log/pull/3
+
+**Full Changelog**: https://github.com/saade/filament-laravel-log/compare/v1.1.0...v1.1.1
+
 ## v1.1.0 - 2022-03-19
 
 ## What's Changed
