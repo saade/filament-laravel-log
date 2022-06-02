@@ -43,7 +43,7 @@ Just install the package and you're ready to go!
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag="filament-laravel-log-config"
+php artisan vendor:publish --tag="log-config"
 ```
 
 This is the contents of the published config file:
