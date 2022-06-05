@@ -159,7 +159,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 ## Credits
 
 - [Saade](https://github.com/saade)
-- [Laravel Forge](https://forge.laravel.com) - for the editor theme
+- [Laravel Forge](https://forge.laravel.com) - for the syntax highlighting theme
 - [ryangjchandler's Filament Log](https://github.com/ryangjchandler/filament-log) - based of for the authorization and multiple log files feature
 - [All Contributors](../../contributors)
 
