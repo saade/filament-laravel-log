@@ -108,4 +108,14 @@ class ViewLog extends Page
     {
         return __('log::filament-laravel-log.page.title');
     }
+
+    protected static function shouldRegisterNavigation(): bool
+    {
+        return auth()->user()->can('view_view_logs');
+    }
+
+    public function mount(): void
+    {
+        abort_unless(auth()->user()->can('view_view_logs'), 403);
+    }
 }
