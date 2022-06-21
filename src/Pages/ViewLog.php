@@ -89,6 +89,11 @@ class ViewLog extends Page
         return config('filament-laravel-log.navigationGroup');
     }
 
+    protected static function getNavigationSort(): ?int
+    {
+        return config('filament-laravel-log.navigationSort');
+    }
+
     protected static function getNavigationIcon(): string
     {
         return config('filament-laravel-log.navigationIcon');
