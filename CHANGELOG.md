@@ -2,6 +2,19 @@
 
 All notable changes to `filament-laravel-log` will be documented in this file.
 
+## v1.1.2 - 2022-06-21
+
+### What's Changed
+
+- Bump dependabot/fetch-metadata from 1.3.0 to 1.3.1 by @dependabot in https://github.com/saade/filament-laravel-log/pull/4
+- add:Sorting navigation items by @MilesWuCode in https://github.com/saade/filament-laravel-log/pull/7
+
+### New Contributors
+
+- @MilesWuCode made their first contribution in https://github.com/saade/filament-laravel-log/pull/7
+
+**Full Changelog**: https://github.com/saade/filament-laravel-log/compare/v1.1.1...v1.1.2
+
 ## v1.1.1 - 2022-04-02
 
 ## What's Changed
