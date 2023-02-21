@@ -2,6 +2,18 @@
 
 All notable changes to `filament-laravel-log` will be documented in this file.
 
+## v1.2.0 - 2023-02-21
+
+### What's Changed
+
+- Support for Laravel 10 by @ysfkaya in https://github.com/saade/filament-laravel-log/pull/13
+
+### New Contributors
+
+- @ysfkaya made their first contribution in https://github.com/saade/filament-laravel-log/pull/13
+
+**Full Changelog**: https://github.com/saade/filament-laravel-log/compare/v1.1.2...v1.2.0
+
 ## v1.1.2 - 2022-06-21
 
 ### What's Changed
