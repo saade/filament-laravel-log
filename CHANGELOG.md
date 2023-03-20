@@ -2,6 +2,18 @@
 
 All notable changes to `filament-laravel-log` will be documented in this file.
 
+## v1.2.1 - 2023-03-20
+
+### What's Changed
+
+- 🐛 Should check if has selected log file before reading contents by @juliomotol in https://github.com/saade/filament-laravel-log/pull/14
+
+### New Contributors
+
+- @juliomotol made their first contribution in https://github.com/saade/filament-laravel-log/pull/14
+
+**Full Changelog**: https://github.com/saade/filament-laravel-log/compare/v1.2.0...v1.2.1
+
 ## v1.2.0 - 2023-02-21
 
 ### What's Changed
