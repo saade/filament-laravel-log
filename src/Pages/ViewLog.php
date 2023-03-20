@@ -25,7 +25,7 @@ class ViewLog extends Page
 
     public function readLog(): string
     {
-        if (! $this->logFile){
+        if (! $this->logFile) {
             return '';
         }
 
