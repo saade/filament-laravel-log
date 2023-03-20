@@ -25,6 +25,10 @@ class ViewLog extends Page
 
     public function readLog(): string
     {
+        if (! $this->logFile){
+            return '';
+        }
+
         return File::get($this->logFile);
     }
 
