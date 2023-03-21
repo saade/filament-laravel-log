@@ -2,12 +2,12 @@
 
 return [
     'page' => [
-        'title' => 'Site Logs'
+        'title' => 'Site Logs',
     ],
     'forms' => [
         'search' => [
-            'placeholder' => 'Select or search a log file...'
-        ]
+            'placeholder' => 'Select or search a log file...',
+        ],
     ],
     'modals' => [
         'clear' => [
@@ -15,8 +15,8 @@ return [
             'subheading' => 'Are you sure you want to clear all site logs?',
             'actions' => [
                 'cancel' => 'Cancel',
-                'confirm' => 'Clear logs'
-            ]
-        ]
-    ]
+                'confirm' => 'Clear logs',
+            ],
+        ],
+    ],
 ];

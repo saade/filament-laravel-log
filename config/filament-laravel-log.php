@@ -59,5 +59,5 @@ return [
     /**
      * Editor font size.
      */
-    'fontSize' => 12
+    'fontSize' => 12,
 ];

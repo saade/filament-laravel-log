@@ -33,14 +33,14 @@ class FilamentLaravelLogServiceProvider extends PluginServiceProvider
     protected function getStyles(): array
     {
         return [
-            self::$name . '-styles' => __DIR__ . '/../dist/css/filament-laravel-log.css',
+            self::$name.'-styles' => __DIR__.'/../dist/css/filament-laravel-log.css',
         ];
     }
 
     protected function getScripts(): array
     {
         return [
-            self::$name . '-ace' => 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.14/ace.js',
+            self::$name.'-ace' => 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.14/ace.js',
         ];
     }
 }
