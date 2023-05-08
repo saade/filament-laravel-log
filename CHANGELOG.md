@@ -2,6 +2,19 @@
 
 All notable changes to `filament-laravel-log` will be documented in this file.
 
+## v1.2.2 - 2023-05-08
+
+### What's Changed
+
+- chore(deps): bump dependabot/fetch-metadata from 1.3.6 to 1.4.0 by @dependabot in https://github.com/saade/filament-laravel-log/pull/17
+- add Persian language by @AmirAghaee in https://github.com/saade/filament-laravel-log/pull/18
+
+### New Contributors
+
+- @AmirAghaee made their first contribution in https://github.com/saade/filament-laravel-log/pull/18
+
+**Full Changelog**: https://github.com/saade/filament-laravel-log/compare/v1.2.1...v1.2.2
+
 ## v1.2.1 - 2023-03-20
 
 ### What's Changed
