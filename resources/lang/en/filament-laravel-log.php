@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'navigation' => [
+        "group" => "System",
+        "label" => "Site Logs"
+    ],
     'page' => [
         'title' => 'Site Logs'
     ],

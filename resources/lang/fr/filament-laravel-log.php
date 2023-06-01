@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'navigation' => [
+        "group" => "Système",
+        "label" => "Journaux du site"
+    ],
     'page' => [
         'title' => 'Journaux du site'
     ],

@@ -9,12 +9,12 @@
 
 # Features
 
-- Syntax highlighting
-- Quickly jump between start and end of the file
-- Refresh log contents
-- Clear log contents
-- Search multiple files in multiple directories <sup>New in v1.1.0</sup>
-- Ignore file patterns <sup>New in v1.1.0</sup>
+-   Syntax highlighting
+-   Quickly jump between start and end of the file
+-   Refresh log contents
+-   Clear log contents
+-   Search multiple files in multiple directories <sup>New in v1.1.0</sup>
+-   Ignore file patterns <sup>New in v1.1.0</sup>
 
 <br>
 
@@ -73,11 +73,6 @@ return [
     ],
 
     /**
-     * Navigation group.
-     */
-    'navigationGroup' => 'System',
-
-    /**
      * Navigation sort.
      */
     'navigationSort' => 1,
@@ -86,11 +81,6 @@ return [
      * Navigation icon.
      */
     'navigationIcon' => 'heroicon-o-document-text',
-
-    /**
-     * Navigation label.
-     */
-    'navigationLabel' => 'Logs',
 
     /**
      * Navigation slug.
@@ -115,7 +105,9 @@ return [
 ```
 
 ## Authorization
+
 If you would like to prevent certain users from accessing your page, you should enable `authorization` in config
+
 ```php
 // config/filament-laravel-log.php
 
@@ -127,8 +119,8 @@ return [
     'authorization' => true,
 ];
 ```
-and register an authorization callback inside of a `ServiceProvider::boot()` method.
 
+and register an authorization callback inside of a `ServiceProvider::boot()` method.
 
 ```php
 // app/Providers/AppServiceProvider.php
@@ -163,10 +155,10 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [Saade](https://github.com/saade)
-- [Laravel Forge](https://forge.laravel.com) - for the syntax highlighting theme
-- [ryangjchandler's Filament Log](https://github.com/ryangjchandler/filament-log) - based of for the authorization and multiple log files feature
-- [All Contributors](../../contributors)
+-   [Saade](https://github.com/saade)
+-   [Laravel Forge](https://forge.laravel.com) - for the syntax highlighting theme
+-   [ryangjchandler's Filament Log](https://github.com/ryangjchandler/filament-log) - based of for the authorization and multiple log files feature
+-   [All Contributors](../../contributors)
 
 ## License
 
