@@ -90,7 +90,7 @@ class ViewLog extends Page
 
     protected static function getNavigationGroup(): ?string
     {
-        return config('filament-laravel-log.navigationGroup');
+        return __('log::filament-laravel-log.navigation.group');
     }
 
     protected static function getNavigationSort(): ?int
@@ -105,7 +105,7 @@ class ViewLog extends Page
 
     protected static function getNavigationLabel(): string
     {
-        return config('filament-laravel-log.navigationLabel');
+        return __('log::filament-laravel-log.navigation.label');
     }
 
     public static function getSlug(): string

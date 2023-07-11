@@ -22,11 +22,6 @@ return [
     ],
 
     /**
-     * Navigation group.
-     */
-    'navigationGroup' => 'System',
-
-    /**
      * Navigation sort.
      */
     'navigationSort' => 1,
@@ -35,11 +30,6 @@ return [
      * Navigation icon.
      */
     'navigationIcon' => 'heroicon-o-document-text',
-
-    /**
-     * Navigation label.
-     */
-    'navigationLabel' => 'Logs',
 
     /**
      * Navigation slug.

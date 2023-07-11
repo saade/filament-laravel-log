@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'navigation' => [
+        "group" => "سیستم",
+        "label" => "لاگ های سایت"
+    ],
     'page' => [
         'title' => 'لاگ های سیستم'
     ],
