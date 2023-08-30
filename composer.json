@@ -1,16 +1,17 @@
 {
-    "name": "lars-caspers/filament-laravel-log",
+    "name": "saade/filament-laravel-log",
     "description": "Access laravel.log file through Filament admin panel",
     "keywords": [
+        "saade",
         "laravel",
         "filament-laravel-log"
     ],
-    "homepage": "https://github.com/LarsCaspers/filament-laravel-log",
+    "homepage": "https://github.com/saade/filament-laravel-log",
     "license": "MIT",
     "authors": [
         {
-            "name": "Lars",
-            "email": "larspiano@live.nl",
+            "name": "Saade",
+            "email": "saade@outlook.com.br",
             "role": "Developer"
         }
     ],
