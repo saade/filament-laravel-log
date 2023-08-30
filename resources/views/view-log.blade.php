@@ -1,8 +1,9 @@
+
 <x-filament::page>
     <div wire:ignore x-data="{
             editor: null,
             init() {
-                document.addEventListener('DOMContentLoaded', () => {
+                window.addEventListener('logContentUpdated', (e) => {
                     editor = ace.edit($refs.editor, {
                         mode: 'ace/mode/ini',
                         readOnly: true,
@@ -10,10 +11,7 @@
                         minLines: {{ config('filament-laravel-log.minLines') }},
                         fontSize: {{ config('filament-laravel-log.fontSize') }}
                     });
-                })
-
-                window.addEventListener('logContentUpdated', (e) => {
-                    editor.session.setValue(e.detail.content);
+                    editor.session.setValue(e.detail[0].content);
                 })
             },
             goToLastLine() {
@@ -28,6 +26,7 @@
             <div class="w-full">
                 {{ $this->search }}
             </div>
+
             <div class="space-x-2 shrink-0">
                 <button type="button" x-on:click="goToFirstLine()"
                     class="inline-flex items-center justify-center px-2 font-medium tracking-tight text-gray-800 transition-colors bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-offset-2 focus:ring-2 focus:ring-inset filament-button dark:focus:ring-offset-0 h-9 hover:bg-gray-50 focus:ring-primary-600 focus:text-primary-600 focus:bg-primary-50 focus:border-primary-600 dark:bg-gray-800 dark:border-gray-600 dark:hover:border-gray-500 dark:text-gray-200 dark:focus:text-primary-400 dark:focus:border-primary-400 dark:focus:bg-gray-800 filament-page-button-action"
@@ -82,20 +81,17 @@
         <div x-ref="editor" class="mt-4 rounded-md ace-forge" />
     </div>
 
-    <x-filament::modal id="filament-laravel-log--clear-modal"
+     <x-filament::modal id="filament-laravel-log--clear-modal"
         :heading="__('log::filament-laravel-log.modals.clear.heading')"
         :subheading="__('log::filament-laravel-log.modals.clear.subheading')">
-        <x-slot name="actions">
-            <x-filament::modal.actions fullWidth="true">
-                <x-filament::button type="button" x-on:click="isOpen = false" color="secondary" outlined="true"
-                    class="filament-page-modal-button-action">
-                    {{ __('log::filament-laravel-log.modals.clear.actions.cancel') }}
-                </x-filament::button>
-                <x-filament::button wire:click="clearLogs" x-on:click="isOpen = false" type="button" color="primary"
-                    class="filament-page-modal-button-action">
-                    {{ __('log::filament-laravel-log.modals.clear.actions.confirm') }}
-                </x-filament::button>
-            </x-filament::modal.actions>
-        </x-slot>
+        <x-filament::button type="button" x-on:click="isOpen = false" color="secondary" outlined="true"
+                            class="filament-page-modal-button-action">
+            {{ __('log::filament-laravel-log.modals.clear.actions.cancel') }}
+        </x-filament::button>
+        <x-filament::button wire:click="clearLogs" x-on:click="isOpen = false" type="button" color="primary"
+                            class="filament-page-modal-button-action">
+            {{ __('log::filament-laravel-log.modals.clear.actions.confirm') }}
+        </x-filament::button>
     </x-filament::modal>
+
 </x-filament::page>

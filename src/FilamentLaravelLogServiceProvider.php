@@ -2,12 +2,14 @@
 
 namespace Saade\FilamentLaravelLog;
 
-use Filament\PluginServiceProvider;
+use Filament\Support\Assets\Css;
+use Filament\Support\Assets\Js;
+use Filament\Support\Facades\FilamentAsset;
 use Saade\FilamentLaravelLog\Commands\UpgradeFilamentLaravelLogCommand;
-use Saade\FilamentLaravelLog\Pages\ViewLog;
 use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class FilamentLaravelLogServiceProvider extends PluginServiceProvider
+class FilamentLaravelLogServiceProvider extends PackageServiceProvider
 {
     public static string $name = 'filament-laravel-log';
 
@@ -23,24 +25,11 @@ class FilamentLaravelLogServiceProvider extends PluginServiceProvider
             ]);
     }
 
-    protected function getPages(): array
+    public function packageBooted(): void
     {
-        return [
-            ViewLog::class,
-        ];
-    }
-
-    protected function getStyles(): array
-    {
-        return [
-            self::$name . '-styles' => __DIR__ . '/../dist/css/filament-laravel-log.css',
-        ];
-    }
-
-    protected function getScripts(): array
-    {
-        return [
-            self::$name . '-ace' => 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.14/ace.js',
-        ];
+        FilamentAsset::register([
+            Js::make(self::$name . '-ace', 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.14/ace.js'),
+            Css::make(self::$name . '-styles', __DIR__ . '/../dist/css/filament-laravel-log.css'),
+        ], 'saade/' . self::$name);
     }
 }

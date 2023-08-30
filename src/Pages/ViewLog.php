@@ -14,13 +14,14 @@ class ViewLog extends Page
 {
     use HasSecurity;
 
-    protected static string $view = 'filament-laravel-log::view-log';
+    public static string $view = 'filament-laravel-log::view-log';
 
     public ?string $logFile = null;
 
     public function refreshContent(): void
     {
-        $this->dispatchBrowserEvent('logContentUpdated', ['content' => $this->readLog()]);
+        $content = $this->readLog();
+        $this->dispatch('logContentUpdated', ['content' => $content]);
     }
 
     public function readLog(): string
@@ -48,7 +49,7 @@ class ViewLog extends Page
         $this->refreshContent();
     }
 
-    protected function getFinder(): Finder
+    public function getFinder(): Finder
     {
         return Finder::create()
             ->ignoreDotFiles(true)
@@ -58,7 +59,7 @@ class ViewLog extends Page
             ->notName(config('filament-laravel-log.exclude'));
     }
 
-    protected function getForms(): array
+    public function getForms(): array
     {
         return [
             'search' => $this->makeForm()
@@ -68,7 +69,7 @@ class ViewLog extends Page
         ];
     }
 
-    protected function getFormSchema(): array
+    public function getFormSchema(): array
     {
         return [
             Forms\Components\Select::make('logFile')
@@ -81,29 +82,29 @@ class ViewLog extends Page
         ];
     }
 
-    protected function getFileNames($files): Collection
+    public function getFileNames($files): Collection
     {
         return collect($files)->mapWithKeys(function (SplFileInfo $file) {
             return [$file->getRealPath() => $file->getRealPath()];
         });
     }
 
-    protected static function getNavigationGroup(): ?string
+    public static function getNavigationGroup(): ?string
     {
         return config('filament-laravel-log.navigationGroup');
     }
 
-    protected static function getNavigationSort(): ?int
+    public static function getNavigationSort(): ?int
     {
         return config('filament-laravel-log.navigationSort');
     }
 
-    protected static function getNavigationIcon(): string
+    public static function getNavigationIcon(): string
     {
         return config('filament-laravel-log.navigationIcon');
     }
 
-    protected static function getNavigationLabel(): string
+    public static function getNavigationLabel(): string
     {
         return config('filament-laravel-log.navigationLabel');
     }
@@ -113,7 +114,7 @@ class ViewLog extends Page
         return config('filament-laravel-log.slug');
     }
 
-    protected function getTitle(): string
+    public function getTitle(): string
     {
         return __('log::filament-laravel-log.page.title');
     }
