@@ -10,14 +10,14 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Saade",
-            "email": "saade@outlook.com.br",
+            "name": "Lars",
+            "email": "larspiano@live.nl",
             "role": "Developer"
         }
     ],
     "require": {
         "php": "^8.0",
-        "filament/filament": "^2.10",
+        "filament/filament": "^3.0",
         "illuminate/contracts": "^9.0|^10.0",
         "spatie/laravel-package-tools": "^1.9.2"
     },
