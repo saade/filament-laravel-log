@@ -77,7 +77,7 @@ class ViewLog extends Page
                 ->reactive()
                 ->disableLabel()
                 ->placeholder(__('log::filament-laravel-log.forms.search.placeholder'))
-                ->options(fn () => $this->getFileNames($this->getFinder())->take(5))
+                ->options(fn () => $this->getFileNames($this->getFinder())->take(10))
                 ->getSearchResultsUsing(fn (string $query) => $this->getFileNames($this->getFinder()->name("*{$query}*"))),
         ];
     }
@@ -85,7 +85,7 @@ class ViewLog extends Page
     public function getFileNames($files): Collection
     {
         return collect($files)->mapWithKeys(function (SplFileInfo $file) {
-            return [$file->getRealPath() => $file->getRealPath()];
+            return [$file->getRealPath() => $file->getFilename()];
         });
     }
 
