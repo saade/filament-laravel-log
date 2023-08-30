@@ -1,5 +1,5 @@
 {
-    "name": "LarsCaspers/filament-laravel-log",
+    "name": "lars-caspers/filament-laravel-log",
     "description": "Access laravel.log file through Filament admin panel",
     "keywords": [
         "laravel",
