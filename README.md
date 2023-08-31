@@ -4,7 +4,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/saade/filament-laravel-log.svg?style=flat-square)](https://packagist.org/packages/saade/filament-laravel-log)
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/saade/filament-laravel-log/3.x/art/cover.png" alt="Banner" style="width: 100%; max-width: 800px; border-radius: 10px" />
+    <img src="https://raw.githubusercontent.com/saade/filament-laravel-log/3.x/art/cover1.png" alt="Banner" style="width: 100%; max-width: 800px; border-radius: 10px" />
 </p>
 
 # Features
