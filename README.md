@@ -74,7 +74,15 @@ FilamentLaravelLogPlugin::make()
 
 ### Authorization
 If you would like to prevent certain users from accessing the logs page, you should add a `authorize` callback in the FilamentLaravelLogPlugin chain.
-Customizing the editor's appearance
+
+```php
+FilamentLaravelLogPlugin::make()
+  ->authorize(
+      fn () => auth()->user()->isAdmin()
+  )
+```
+
+### Customizing the editor appearance
 
 Publish the config file:
 
