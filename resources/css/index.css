@@ -1,0 +1,149 @@
+@tailwind utilities;
+
+html.dark .ace-filament .ace_scrollbar::-webkit-scrollbar {
+    @apply w-3;
+}
+
+html.dark .ace-filament .ace_scrollbar::-webkit-scrollbar-track {
+    @apply bg-gray-900;
+}
+
+html.dark .ace-filament .ace_scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-gray-800 rounded-[4px];
+}
+
+html.dark .ace-filament .ace_gutter {
+    @apply bg-gray-900 text-gray-400;
+}
+
+html.dark .ace-filament .ace_print-margin {
+    @apply hidden;
+}
+
+html.dark .ace-filament {
+    @apply bg-gray-900 ring-1 ring-white/20 text-gray-200;
+}
+
+html:not(.dark) .ace-filament {
+    @apply ring-1 ring-gray-950/10;
+}
+
+html.dark .ace-filament .ace_cursor {
+    @apply text-gray-200;
+}
+
+html.dark .ace-filament .ace_marker-layer .ace_selection {
+    @apply bg-primary-500/75;
+}
+
+html.dark .ace-filament.ace_multiselect .ace_selection.ace_start {
+    box-shadow: 0 0 3px 0px #002240;
+}
+
+html.dark .ace-filament .ace_marker-layer .ace_step {
+    background: rgb(127, 111, 19);
+}
+
+html.dark .ace-filament .ace_marker-layer .ace_bracket {
+    margin: -1px 0 0 -1px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+html.dark .ace-filament .ace_marker-layer .ace_active-line {
+    background: rgba(24, 182, 155, 0.1);
+}
+
+html.dark .ace-filament .ace_gutter-active-line {
+    background-color: rgba(0, 0, 0, 0.35);
+}
+
+html.dark .ace-filament .ace_marker-layer .ace_selected-word {
+    border: 1px solid rgba(179, 101, 57, 0.75);
+}
+
+html.dark .ace-filament .ace_invisible {
+    color: rgba(255, 255, 255, 0.15);
+}
+
+html.dark .ace-filament .ace_keyword,
+html.dark .ace-filament .ace_meta {
+    color: #ff9d00;
+}
+
+html.dark .ace-filament .ace_constant,
+html.dark .ace-filament .ace_constant.ace_character,
+html.dark .ace-filament .ace_constant.ace_character.ace_escape,
+html.dark .ace-filament .ace_constant.ace_other {
+    color: #ff628c;
+}
+
+html.dark .ace-filament .ace_invalid {
+    color: #f8f8f8;
+    background-color: #800f00;
+}
+
+html.dark .ace-filament .ace_support {
+    color: #80ffbb;
+}
+
+html.dark .ace-filament .ace_support.ace_constant {
+    color: #eb939a;
+}
+
+html.dark .ace-filament .ace_fold {
+    background-color: #ff9d00;
+    border-color: #f9fafb;
+}
+
+html.dark .ace-filament .ace_support.ace_function {
+    color: #ffb054;
+}
+
+html.dark .ace-filament .ace_storage {
+    color: #ffee80;
+}
+
+html.dark .ace-filament .ace_entity {
+    color: #ffdd00;
+}
+
+html.dark .ace-filament .ace_string {
+    color: #7cd827;
+}
+
+html.dark .ace-filament .ace_string.ace_regexp {
+    color: #80ffc2;
+}
+
+html.dark .ace-filament .ace_comment {
+    font-style: italic;
+    color: #6b7280;
+}
+
+html.dark .ace-filament .ace_heading,
+html.dark .ace-filament .ace_markup.ace_heading {
+    color: #c8e4fd;
+    background-color: #001221;
+}
+
+html.dark .ace-filament .ace_list,
+html.dark .ace-filament .ace_markup.ace_list {
+    background-color: #130d26;
+}
+
+html.dark .ace-filament .ace_variable {
+    color: #cccccc;
+}
+
+html.dark .ace-filament .ace_variable.ace_language {
+    color: #ff80e1;
+}
+
+html.dark .ace-filament .ace_meta.ace_tag {
+    color: #9effff;
+}
+
+html.dark .ace-filament .ace_indent-guide {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAEklEQVQImWNgYGBgYHCLSvkPAAP3AgSDTRd4AAAAAElFTkSuQmCC)
+        right repeat-y;
+}
