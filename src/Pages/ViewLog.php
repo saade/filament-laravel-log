@@ -3,27 +3,43 @@
 namespace Saade\FilamentLaravelLog\Pages;
 
 use Filament\Forms;
+use Filament\Forms\Form;
 use Filament\Pages\Page;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
-use Saade\FilamentLaravelLog\Pages\Concerns\HasSecurity;
+use Saade\FilamentLaravelLog\FilamentLaravelLogPlugin;
+use Saade\FilamentLaravelLog\Pages\Concerns\HasActions;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
 class ViewLog extends Page
 {
-    use HasSecurity;
+    use HasActions;
 
     protected static string $view = 'filament-laravel-log::view-log';
 
     public ?string $logFile = null;
 
-    public function refreshContent(): void
+    public function form(Form $form): Form
     {
-        $this->dispatchBrowserEvent('logContentUpdated', ['content' => $this->readLog()]);
+        return $form
+            ->schema([
+                Forms\Components\Select::make('logFile')
+                    ->label(false)
+                    ->placeholder(fn (): string => __('log::filament-laravel-log.page.form.placeholder'))
+                    ->live()
+                    ->options(
+                        fn () => $this->getFileNames($this->getFinder())->take(5)
+                    )
+                    ->searchable()
+                    ->getSearchResultsUsing(
+                        fn (string $query) => $this->getFileNames($this->getFinder()->name("*{$query}*"))
+                    )
+                    ->afterStateUpdated(fn () => $this->refresh()),
+            ]);
     }
 
-    public function readLog(): string
+    public function read(): string
     {
         if (! $this->logFile) {
             return '';
@@ -32,20 +48,24 @@ class ViewLog extends Page
         return File::get($this->logFile);
     }
 
-    public function writeLog($content = '')
+    public function write($content = ''): void
     {
-        return File::put($this->logFile, $content);
+        if (! $this->logFile) {
+            return;
+        }
+
+        File::put($this->logFile, $content);
     }
 
-    public function updatedLogFile()
+    public function clear(): void
     {
-        $this->refreshContent();
+        $this->write();
+        $this->refresh();
     }
 
-    public function clearLogs(): void
+    public function refresh(): void
     {
-        $this->writeLog();
-        $this->refreshContent();
+        $this->dispatch('logContentUpdated', content: $this->read());
     }
 
     protected function getFinder(): Finder
@@ -54,31 +74,8 @@ class ViewLog extends Page
             ->ignoreDotFiles(true)
             ->ignoreUnreadableDirs()
             ->files()
-            ->in(config('filament-laravel-log.logsDir'))
-            ->notName(config('filament-laravel-log.exclude'));
-    }
-
-    protected function getForms(): array
-    {
-        return [
-            'search' => $this->makeForm()
-                ->schema($this->getFormSchema())
-                ->model($this->getFormModel())
-                ->statePath($this->getFormStatePath()),
-        ];
-    }
-
-    protected function getFormSchema(): array
-    {
-        return [
-            Forms\Components\Select::make('logFile')
-                ->searchable()
-                ->reactive()
-                ->disableLabel()
-                ->placeholder(__('log::filament-laravel-log.forms.search.placeholder'))
-                ->options(fn () => $this->getFileNames($this->getFinder())->take(5))
-                ->getSearchResultsUsing(fn (string $query) => $this->getFileNames($this->getFinder()->name("*{$query}*"))),
-        ];
+            ->in(FilamentLaravelLogPlugin::get()->getLogDirs())
+            ->notName(FilamentLaravelLogPlugin::get()->getExcludedFilesPatterns());
     }
 
     protected function getFileNames($files): Collection
@@ -88,32 +85,32 @@ class ViewLog extends Page
         });
     }
 
-    protected static function getNavigationGroup(): ?string
+    public static function getNavigationGroup(): ?string
     {
-        return config('filament-laravel-log.navigationGroup');
+        return FilamentLaravelLogPlugin::get()->getNavigationGroup();
     }
 
-    protected static function getNavigationSort(): ?int
+    public static function getNavigationSort(): ?int
     {
-        return config('filament-laravel-log.navigationSort');
+        return FilamentLaravelLogPlugin::get()->getNavigationSort();
     }
 
-    protected static function getNavigationIcon(): string
+    public static function getNavigationIcon(): string
     {
-        return config('filament-laravel-log.navigationIcon');
+        return FilamentLaravelLogPlugin::get()->getNavigationIcon();
     }
 
-    protected static function getNavigationLabel(): string
+    public static function getNavigationLabel(): string
     {
-        return config('filament-laravel-log.navigationLabel');
+        return FilamentLaravelLogPlugin::get()->getNavigationLabel();
     }
 
     public static function getSlug(): string
     {
-        return config('filament-laravel-log.slug');
+        return FilamentLaravelLogPlugin::get()->getSlug();
     }
 
-    protected function getTitle(): string
+    public function getTitle(): string
     {
         return __('log::filament-laravel-log.page.title');
     }

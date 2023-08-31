@@ -1,20 +1,9 @@
-
-const colors = require('tailwindcss/colors')
+const preset = require('./vendor/filament/filament/tailwind.config.preset')
 
 module.exports = {
-    darkMode: 'class',
+    presets: [preset],
     content: [
+        './src/**/*.php',
         './resources/views/**/*.blade.php',
     ],
-
-    theme: {
-        extend: {
-            colors: {
-                danger: colors.rose,
-                success: colors.green,
-                warning: colors.amber,
-                primary: colors.yellow
-            }
-        },
-    },
-};
+}
