@@ -85,7 +85,7 @@ class ViewLog extends Page
     {
         return collect($files)->mapWithKeys(function (SplFileInfo $file) {
             return [$file->getRealPath() => $file->getRealPath()];
-        });
+        })->sortDesc();
     }
 
     protected static function getNavigationGroup(): ?string
