@@ -30,7 +30,7 @@ class FilamentLaravelLogPlugin implements Plugin
 
     public function getId(): string
     {
-        return 'filament-laravel-blog';
+        return 'filament-laravel-log';
     }
 
     public static function make(): static
