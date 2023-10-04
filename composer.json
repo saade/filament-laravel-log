@@ -66,10 +66,7 @@
         "laravel": {
             "providers": [
                 "Saade\\FilamentLaravelLog\\FilamentLaravelLogServiceProvider"
-            ],
-            "aliases": {
-                "FilamentLaravelLog": "Saade\\FilamentLaravelLog\\Facades\\FilamentLaravelLog"
-            }
+            ]
         }
     },
     "minimum-stability": "dev",
