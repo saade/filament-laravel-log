@@ -57,9 +57,11 @@ class FilamentLaravelLogPlugin implements Plugin
 
     public function boot(Panel $panel): void
     {
-        $this->logDirs([
-            storage_path('logs'),
-        ]);
+        if(! $this->getLogDirs()){
+            $this->logDirs([
+                storage_path('logs'),
+            ]);
+        }
     }
 
     public function authorize(bool | Closure $callback = true): static
