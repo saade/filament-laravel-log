@@ -12,21 +12,21 @@ class FilamentLaravelLogPlugin implements Plugin
 {
     use EvaluatesClosures;
 
-    protected bool | Closure $authorizeUsing = true;
+    protected bool|Closure $authorizeUsing = true;
 
-    protected array | Closure $logDirs = [];
+    protected array|Closure $logDirs = [];
 
-    protected array | Closure $excludedFilesPatterns = [];
+    protected array|Closure $excludedFilesPatterns = [];
 
-    protected string | Closure | null $navigationGroup = null;
+    protected string|Closure|null $navigationGroup = null;
 
-    protected int | Closure $navigationSort = 1;
+    protected int|Closure $navigationSort = 1;
 
-    protected string | Closure $navigationIcon = 'heroicon-o-document-text';
+    protected string|Closure $navigationIcon = 'heroicon-o-document-text';
 
-    protected string | Closure | null $navigationLabel = null;
+    protected string|Closure|null $navigationLabel = null;
 
-    protected string | Closure $slug = 'logs';
+    protected string|Closure $slug = 'logs';
 
     public function getId(): string
     {
@@ -45,26 +45,34 @@ class FilamentLaravelLogPlugin implements Plugin
 
     public function register(Panel $panel): void
     {
-        if (! $this->isAuthorized()) {
+        if (!$this->isAuthorized()) {
             return;
         }
 
         $panel
             ->pages([
-                ViewLog::class,
+                $this->viewLog,
             ]);
+    }
+
+    public $viewLog = ViewLog::class;
+
+    public function viewPage(string $page): static
+    {
+        $this->viewLog = $page;
+        return $this;
     }
 
     public function boot(Panel $panel): void
     {
-        if(! $this->getLogDirs()){
+        if (!$this->getLogDirs()) {
             $this->logDirs([
                 storage_path('logs'),
             ]);
         }
     }
 
-    public function authorize(bool | Closure $callback = true): static
+    public function authorize(bool|Closure $callback = true): static
     {
         $this->authorizeUsing = $callback;
 
@@ -76,7 +84,7 @@ class FilamentLaravelLogPlugin implements Plugin
         return $this->evaluate($this->authorizeUsing) === true;
     }
 
-    public function logDirs(array | Closure $logDirs): static
+    public function logDirs(array|Closure $logDirs): static
     {
         $this->logDirs = $logDirs;
 
@@ -88,7 +96,7 @@ class FilamentLaravelLogPlugin implements Plugin
         return $this->evaluate($this->logDirs);
     }
 
-    public function excludedFilesPatterns(array | Closure $excludedFilesPatterns): static
+    public function excludedFilesPatterns(array|Closure $excludedFilesPatterns): static
     {
         $this->excludedFilesPatterns = $excludedFilesPatterns;
 
@@ -100,7 +108,7 @@ class FilamentLaravelLogPlugin implements Plugin
         return $this->evaluate($this->excludedFilesPatterns);
     }
 
-    public function navigationGroup(string | Closure | null $navigationGroup): static
+    public function navigationGroup(string|Closure|null $navigationGroup): static
     {
         $this->navigationGroup = $navigationGroup;
 
@@ -112,7 +120,7 @@ class FilamentLaravelLogPlugin implements Plugin
         return $this->evaluate($this->navigationGroup) ?? __('log::filament-laravel-log.navigation.group');
     }
 
-    public function navigationSort(int | Closure $navigationSort): static
+    public function navigationSort(int|Closure $navigationSort): static
     {
         $this->navigationSort = $navigationSort;
 
@@ -124,7 +132,7 @@ class FilamentLaravelLogPlugin implements Plugin
         return $this->evaluate($this->navigationSort);
     }
 
-    public function navigationIcon(string | Closure $navigationIcon): static
+    public function navigationIcon(string|Closure $navigationIcon): static
     {
         $this->navigationIcon = $navigationIcon;
 
@@ -136,7 +144,7 @@ class FilamentLaravelLogPlugin implements Plugin
         return $this->evaluate($this->navigationIcon);
     }
 
-    public function navigationLabel(string | Closure | null $navigationLabel): static
+    public function navigationLabel(string|Closure|null $navigationLabel): static
     {
         $this->navigationLabel = $navigationLabel;
 
@@ -148,7 +156,7 @@ class FilamentLaravelLogPlugin implements Plugin
         return $this->evaluate($this->navigationLabel) ?? __('log::filament-laravel-log.navigation.label');
     }
 
-    public function slug(string | Closure $slug): static
+    public function slug(string|Closure $slug): static
     {
         $this->slug = $slug;
 
