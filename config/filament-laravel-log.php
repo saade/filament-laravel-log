@@ -15,4 +15,9 @@ return [
      * Editor font size.
      */
     'fontSize' => 12,
+
+    /**
+     * Number of rows in the search bar
+     */
+    'searchBarRows' => 5,
 ];
