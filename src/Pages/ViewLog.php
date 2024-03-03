@@ -29,7 +29,7 @@ class ViewLog extends Page
                     ->placeholder(fn (): string => __('log::filament-laravel-log.page.form.placeholder'))
                     ->live()
                     ->options(
-                        fn () => $this->getFileNames($this->getFinder())->take(config('filament-laravel-log.searchBarRows'))
+                        fn () => $this->getFileNames($this->getFinder())->take(config('filament-laravel-log.limit'))
                     )
                     ->searchable()
                     ->getSearchResultsUsing(

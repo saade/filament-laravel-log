@@ -17,7 +17,7 @@ return [
     'fontSize' => 12,
 
     /**
-     * Number of rows in the search bar
+     * Limit the number of results returned from the search.
      */
-    'searchBarRows' => 5,
+    'limit' => 5,
 ];
