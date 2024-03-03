@@ -14,6 +14,8 @@ class FilamentLaravelLogPlugin implements Plugin
 
     protected bool | Closure $authorizeUsing = true;
 
+    protected string $viewLog = ViewLog::class;
+
     protected array | Closure $logDirs = [];
 
     protected array | Closure $excludedFilesPatterns = [];
@@ -51,7 +53,7 @@ class FilamentLaravelLogPlugin implements Plugin
 
         $panel
             ->pages([
-                ViewLog::class,
+                $this->viewLog,
             ]);
     }
 
@@ -74,6 +76,13 @@ class FilamentLaravelLogPlugin implements Plugin
     public function isAuthorized(): bool
     {
         return $this->evaluate($this->authorizeUsing) === true;
+    }
+
+    public function viewLog(string $viewLog): static
+    {
+        $this->viewLog = $viewLog;
+
+        return $this;
     }
 
     public function logDirs(array | Closure $logDirs): static

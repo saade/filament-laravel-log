@@ -82,6 +82,27 @@ FilamentLaravelLogPlugin::make()
   )
 ```
 
+### Customizing the log page
+
+To customize the log page, you can extend the `Saade\FilamentLaravelLog\Pages\ViewLog` page and override its methods.
+    
+```php
+use Saade\FilamentLaravelLog\Pages\ViewLog as BaseViewLog;
+
+class ViewLog extends BaseViewLog
+{
+    // Your implementation
+}
+```
+
+```php
+use App\Filament\Pages\ViewLog;
+
+FilamentLaravelLogPlugin::make()
+  ->viewLog(ViewLog::class)
+```
+
+
 ### Customizing the editor appearance
 
 Publish the config file:
