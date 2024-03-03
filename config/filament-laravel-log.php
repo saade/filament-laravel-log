@@ -15,4 +15,9 @@ return [
      * Editor font size.
      */
     'fontSize' => 12,
+
+    /**
+     * Limit the number of results returned from the search.
+     */
+    'limit' => 5,
 ];
