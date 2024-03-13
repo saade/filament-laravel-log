@@ -47,10 +47,6 @@ class FilamentLaravelLogPlugin implements Plugin
 
     public function register(Panel $panel): void
     {
-        if (! $this->isAuthorized()) {
-            return;
-        }
-
         $panel
             ->pages([
                 $this->viewLog,
