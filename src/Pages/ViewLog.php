@@ -114,4 +114,9 @@ class ViewLog extends Page
     {
         return __('log::filament-laravel-log.page.title');
     }
+
+    public static function canAccess(): bool
+    {
+        return FilamentLaravelLogPlugin::get()->isAuthorized();
+    }
 }
