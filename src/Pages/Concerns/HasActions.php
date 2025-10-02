@@ -14,7 +14,7 @@ trait HasActions
 {
     use EvaluatesClosures;
 
-    protected bool|Closure $isClearable = true;
+    protected bool | Closure $isClearable = true;
 
     protected ?Closure $modifyClearActionUsing = null;
 

@@ -95,7 +95,7 @@ class ViewLog extends Page
         });
     }
 
-    public static function getNavigationGroup(): string|UnitEnum|null
+    public static function getNavigationGroup(): string | UnitEnum | null
     {
         return static::$navigationGroup ?? FilamentLaravelLogPlugin::get()->getNavigationGroup();
     }
@@ -105,12 +105,12 @@ class ViewLog extends Page
         return static::$navigationParentItem ?? FilamentLaravelLogPlugin::get()->getNavigationParentItem();
     }
 
-    public static function getActiveNavigationIcon(): string|BackedEnum|Htmlable|null
+    public static function getActiveNavigationIcon(): string | BackedEnum | Htmlable | null
     {
         return static::$activeNavigationIcon ?? FilamentLaravelLogPlugin::get()->getActiveNavigationIcon();
     }
 
-    public static function getNavigationIcon(): string|BackedEnum|Htmlable|null
+    public static function getNavigationIcon(): string | BackedEnum | Htmlable | null
     {
         return static::$navigationIcon ?? FilamentLaravelLogPlugin::get()->getNavigationIcon();
     }
@@ -125,7 +125,7 @@ class ViewLog extends Page
         return FilamentLaravelLogPlugin::get()->getNavigationBadge();
     }
 
-    public static function getNavigationBadgeColor(): string|array|null
+    public static function getNavigationBadgeColor(): string | array | null
     {
         return FilamentLaravelLogPlugin::get()->getNavigationBadgeColor();
     }

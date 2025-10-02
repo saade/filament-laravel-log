@@ -24,7 +24,7 @@ class FilamentLaravelLogServiceProvider extends PackageServiceProvider
                     ->askToStarRepoOnGitHub('saade/filament-laravel-log');
             });
 
-        if (file_exists($package->basePath('/../config/'.static::$name.'.php'))) {
+        if (file_exists($package->basePath('/../config/' . static::$name . '.php'))) {
             $package->hasConfigFile(static::$name);
         }
 
@@ -59,7 +59,7 @@ class FilamentLaravelLogServiceProvider extends PackageServiceProvider
     protected function getAssets(): array
     {
         return [
-            AlpineComponent::make('filament-laravel-log-alpine', __DIR__.'/../resources/dist/filament-laravel-log.js'),
+            AlpineComponent::make('filament-laravel-log-alpine', __DIR__ . '/../resources/dist/filament-laravel-log.js'),
         ];
     }
 }
