@@ -2,30 +2,34 @@
 
 namespace Saade\FilamentLaravelLog\Pages;
 
+use BackedEnum;
 use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Pages\Page;
+use Filament\Panel;
+use Filament\Schemas\Schema;
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Saade\FilamentLaravelLog\FilamentLaravelLogPlugin;
 use Saade\FilamentLaravelLog\Pages\Concerns\HasActions;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
+use UnitEnum;
 
 class ViewLog extends Page
 {
     use HasActions;
 
-    protected static string $view = 'filament-laravel-log::view-log';
+    protected string $view = 'filament-laravel-log::view-log';
 
     public ?string $logFile = null;
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
                 Forms\Components\Select::make('logFile')
-                    ->label(null)
+                    ->hiddenLabel()
                     ->placeholder(fn (): string => __('log::filament-laravel-log.page.form.placeholder'))
                     ->live()
                     ->options(
@@ -91,38 +95,63 @@ class ViewLog extends Page
         });
     }
 
-    public static function getNavigationGroup(): ?string
+    public static function getNavigationGroup(): string|UnitEnum|null
     {
-        return FilamentLaravelLogPlugin::get()->getNavigationGroup();
+        return static::$navigationGroup ?? FilamentLaravelLogPlugin::get()->getNavigationGroup();
     }
 
-    public static function getNavigationSort(): ?int
+    public static function getNavigationParentItem(): ?string
     {
-        return FilamentLaravelLogPlugin::get()->getNavigationSort();
+        return static::$navigationParentItem ?? FilamentLaravelLogPlugin::get()->getNavigationParentItem();
     }
 
-    public static function getNavigationIcon(): string
+    public static function getActiveNavigationIcon(): string|BackedEnum|Htmlable|null
     {
-        return FilamentLaravelLogPlugin::get()->getNavigationIcon();
+        return static::$activeNavigationIcon ?? FilamentLaravelLogPlugin::get()->getActiveNavigationIcon();
+    }
+
+    public static function getNavigationIcon(): string|BackedEnum|Htmlable|null
+    {
+        return static::$navigationIcon ?? FilamentLaravelLogPlugin::get()->getNavigationIcon();
     }
 
     public static function getNavigationLabel(): string
     {
-        return FilamentLaravelLogPlugin::get()->getNavigationLabel();
+        return static::$navigationLabel ?? FilamentLaravelLogPlugin::get()->getNavigationLabel();
     }
 
-    public static function getSlug(): string
+    public static function getNavigationBadge(): ?string
     {
-        return FilamentLaravelLogPlugin::get()->getSlug();
+        return FilamentLaravelLogPlugin::get()->getNavigationBadge();
+    }
+
+    public static function getNavigationBadgeColor(): string|array|null
+    {
+        return FilamentLaravelLogPlugin::get()->getNavigationBadgeColor();
+    }
+
+    public static function getNavigationBadgeTooltip(): ?string
+    {
+        return static::$navigationBadgeTooltip ?? FilamentLaravelLogPlugin::get()->getNavigationBadgeTooltip();
+    }
+
+    public static function getNavigationSort(): ?int
+    {
+        return static::$navigationSort ?? FilamentLaravelLogPlugin::get()->getNavigationSort();
+    }
+
+    public static function getSlug(?Panel $panel = null): string
+    {
+        return static::$slug ?? FilamentLaravelLogPlugin::get()->getSlug();
     }
 
     public function getTitle(): string
     {
-        return __('log::filament-laravel-log.page.title');
+        return static::$title ?? FilamentLaravelLogPlugin::get()->getTitle();
     }
 
     public static function canAccess(): bool
     {
-        return FilamentLaravelLogPlugin::get()->isAuthorized();
+        return FilamentLaravelLogPlugin::get()->canAccess();
     }
 }

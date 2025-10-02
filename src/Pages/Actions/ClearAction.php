@@ -3,7 +3,7 @@
 namespace Saade\FilamentLaravelLog\Pages\Actions;
 
 use Filament\Actions\Action;
-use Filament\Support\Enums\ActionSize;
+use Filament\Support\Enums\Size;
 use Saade\FilamentLaravelLog\Pages\ViewLog;
 
 class ClearAction extends Action
@@ -17,9 +17,11 @@ class ClearAction extends Action
     {
         parent::setUp();
 
-        $this->iconButton()->icon('heroicon-o-trash')->color('gray');
+        $this->icon('heroicon-o-trash')->color('danger');
 
         $this->label(fn (): string => __('log::filament-laravel-log.actions.clear.label'));
+
+        $this->size(Size::Small);
 
         $this->requiresConfirmation()
             ->modalHeading(fn (): string => __('log::filament-laravel-log.actions.clear.modal.heading'))
@@ -27,8 +29,6 @@ class ClearAction extends Action
             ->modalSubmitActionLabel(fn (): string => __('log::filament-laravel-log.actions.clear.modal.actions.confirm'));
 
         $this->action(fn (ViewLog $livewire) => $livewire->clear());
-
-        $this->size(ActionSize::Small);
 
         $this->visible(
             fn (ViewLog $livewire): bool => $livewire->isClearable()

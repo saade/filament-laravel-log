@@ -3,7 +3,7 @@
 namespace Saade\FilamentLaravelLog\Pages\Actions;
 
 use Filament\Actions\Action;
-use Filament\Support\Enums\ActionSize;
+use Filament\Support\Enums\Size;
 use Saade\FilamentLaravelLog\Pages\ViewLog;
 
 class JumpToEndAction extends Action
@@ -17,13 +17,13 @@ class JumpToEndAction extends Action
     {
         parent::setUp();
 
-        $this->iconButton()->icon('heroicon-o-arrow-uturn-down')->color('gray');
+        $this->icon('heroicon-o-arrow-uturn-down')->color('gray');
 
         $this->label(fn (): string => __('log::filament-laravel-log.actions.jumpToEnd.label'));
 
-        $this->livewireClickHandlerEnabled(false);
+        $this->size(Size::Small);
 
-        $this->size(ActionSize::Small);
+        $this->livewireClickHandlerEnabled(false);
 
         $this->disabled(
             fn (ViewLog $livewire): bool => ! (bool) $livewire->logFile

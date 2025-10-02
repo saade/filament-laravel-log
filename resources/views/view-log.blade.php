@@ -1,8 +1,7 @@
 <x-filament::page>
     <div
-        ax-load
-        ax-load-src="{{ \Filament\Support\Facades\FilamentAsset::getAlpineComponentSrc('filament-laravel-log', 'saade/filament-laravel-log') }}"
-        ax-load-css="{{ \Filament\Support\Facades\FilamentAsset::getStyleHref('filament-laravel-log-styles', 'saade/filament-laravel-log') }}"
+        x-load
+        x-load-src="{{ \Filament\Support\Facades\FilamentAsset::getAlpineComponentSrc('filament-laravel-log-alpine', 'saade/filament-laravel-log') }}"
         x-data="editor({
             maxLines: @js(config('filament-laravel-log.maxLines')),
             minLines: @js(config('filament-laravel-log.minLines')),

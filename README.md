@@ -27,6 +27,19 @@ You can install the package via composer:
 composer require saade/filament-laravel-log:^3.0
 ```
 
+<br>
+
+> [!IMPORTANT]
+> If you have not set up a custom theme and are using Filament Panels follow the instructions in the [Filament Docs](https://filamentphp.com/docs/4.x/styling/overview#creating-a-custom-theme) first.
+
+After setting up a custom theme add the plugin's views to your theme css file or your app's css file if using the standalone packages.
+
+```css
+@import '../../../../vendor/saade/filament-laravel-log/resources/css/filament-laravel-log.css';
+
+@source '../../../../vendor/saade/filament-laravel-log/resources/views/**/*.blade.php';
+```
+
 ## Usage
 
 Add the `Saade\FilamentLaravelLog\FilamentLaravelLogPlugin` to your panel config.
@@ -49,14 +62,20 @@ class AdminPanelProvider extends PanelProvider
 
 ## Configuration
 
-### Customizing the navigation item
+### Customizing the navigation
 
 ```php
 FilamentLaravelLogPlugin::make()
-    ->navigationGroup('System Tools')
+    ->navigationGroup('System')
+    ->navigationParentItem('Tools')
     ->navigationLabel('Logs')
     ->navigationIcon('heroicon-o-bug-ant')
+    ->activeNavigationIcon('heroicon-s-bug-ant')
+    ->navigationBadge('+10')
+    ->navigationBadgeColor('danger')
+    ->navigationBadgeTooltip('New logs available')
     ->navigationSort(1)
+    ->title('Application Logs')
     ->slug('logs')
 ```
 

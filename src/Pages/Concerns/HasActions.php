@@ -14,7 +14,7 @@ trait HasActions
 {
     use EvaluatesClosures;
 
-    protected bool | Closure $isClearable = true;
+    protected bool|Closure $isClearable = true;
 
     protected ?Closure $modifyClearActionUsing = null;
 
@@ -47,10 +47,7 @@ trait HasActions
             ]) ?? $action;
         }
 
-        $action->extraAttributes([
-            'x-on:click' => 'jumpToStart',
-            ...$action->getExtraAttributes(),
-        ]);
+        $action->alpineClickHandler('jumpToStart');
 
         return $action;
     }
@@ -65,10 +62,7 @@ trait HasActions
             ]) ?? $action;
         }
 
-        $action->extraAttributes([
-            'x-on:click' => 'jumpToEnd',
-            ...$action->getExtraAttributes(),
-        ]);
+        $action->alpineClickHandler('jumpToEnd');
 
         return $action;
     }
