@@ -14,7 +14,7 @@ return [
         ],
     ],
     'navigation' => [
-        'label' => 'لاگ‌ها'
+        'label' => 'لاگ‌ها',
     ],
     'actions' => [
         'clear' => [
