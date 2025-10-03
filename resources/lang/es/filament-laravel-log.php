@@ -6,6 +6,7 @@ return [
     ],
 
     'page' => [
+        'title' => 'Logs',
         'form' => [
             'placeholder' => 'Selecciona o busca un archivo de registro...',
         ],
