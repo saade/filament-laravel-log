@@ -75,7 +75,7 @@ trait HasActions
 
     public function refreshAction(): Action
     {
-        return $action = RefreshAction::make();
+        $action = RefreshAction::make();
 
         if ($this->modifyRefreshActionUsing) {
             $action = $this->evaluate($this->modifyRefreshActionUsing, [
@@ -88,7 +88,7 @@ trait HasActions
 
     public function modifyClearAction(?Closure $callback): static
     {
-        $this->modifyclearActionUsing = $callback;
+        $this->modifyClearActionUsing = $callback;
 
         return $this;
     }
@@ -103,6 +103,13 @@ trait HasActions
     public function modifyJumpToEndAction(?Closure $callback): static
     {
         $this->modifyJumpToEndActionUsing = $callback;
+
+        return $this;
+    }
+
+    public function modifyRefreshAction(?Closure $callback): static
+    {
+        $this->modifyRefreshActionUsing = $callback;
 
         return $this;
     }

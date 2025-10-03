@@ -1,17 +1,12 @@
 {
     "name": "saade/filament-laravel-log",
     "description": "Access laravel.log file through Filament admin panel",
+    "license": "MIT",
     "keywords": [
         "saade",
         "laravel",
         "filament-laravel-log"
     ],
-    "homepage": "https://github.com/saade/filament-laravel-log",
-    "support": {
-        "issues": "https://github.com/saade/filament-laravel-log/issues",
-        "source": "https://github.com/saade/filament-laravel-log"
-    },
-    "license": "MIT",
     "authors": [
         {
             "name": "Saade",
@@ -19,25 +14,32 @@
             "role": "Developer"
         }
     ],
+    "homepage": "https://github.com/saade/filament-laravel-log",
+    "support": {
+        "issues": "https://github.com/saade/filament-laravel-log/issues",
+        "source": "https://github.com/saade/filament-laravel-log"
+    },
     "require": {
-        "php": "^8.1",
+        "php": "^8.2",
         "filament/filament": "^3.0",
-        "illuminate/contracts": "^10.0|^11.0",
+        "illuminate/contracts": "^11.0 || ^12.0",
         "spatie/laravel-package-tools": "^1.15.0"
     },
     "require-dev": {
+        "larastan/larastan": "^3.1.0",
         "laravel/pint": "^1.0",
-        "nunomaduro/collision": "^7.0|^8.0",
-        "nunomaduro/larastan": "^2.0.1",
-        "orchestra/testbench": "^8.0|^9.0",
+        "nunomaduro/collision": "^7.0 || ^8.0",
+        "orchestra/testbench": "^9.0 || ^10.0",
         "pestphp/pest": "^2.0",
         "pestphp/pest-plugin-arch": "^2.0",
         "pestphp/pest-plugin-laravel": "^2.0",
         "phpstan/extension-installer": "^1.1",
-        "phpstan/phpstan-deprecation-rules": "^1.0",
-        "phpstan/phpstan-phpunit": "^1.0",
+        "phpstan/phpstan-deprecation-rules": "^2.0.1",
+        "phpstan/phpstan-phpunit": "^2.0.4",
         "spatie/laravel-ray": "^1.26"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Saade\\FilamentLaravelLog\\": "src/"
@@ -48,19 +50,12 @@
             "Saade\\FilamentLaravelLog\\Tests\\": "tests/"
         }
     },
-    "scripts": {
-        "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
-        "analyse": "vendor/bin/phpstan analyse",
-        "test": "vendor/bin/pest",
-        "test-coverage": "vendor/bin/pest --coverage",
-        "format": "vendor/bin/pint"
-    },
     "config": {
-        "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true,
             "phpstan/extension-installer": true
-        }
+        },
+        "sort-packages": true
     },
     "extra": {
         "laravel": {
@@ -69,6 +64,11 @@
             ]
         }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    "scripts": {
+        "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
+        "analyse": "vendor/bin/phpstan analyse --memory-limit=512M",
+        "format": "vendor/bin/pint",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage"
+    }
 }
