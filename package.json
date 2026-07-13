@@ -8,7 +8,7 @@
         "build": "npm-run-all build:*"
     },
     "devDependencies": {
-        "@shufo/prettier-plugin-blade": "^1.11.0",
+        "@shufo/prettier-plugin-blade": "^1.16.2",
         "ace-builds": "^1.24.1",
         "esbuild": "^0.19.2",
         "npm-run-all": "^4.1.5",
