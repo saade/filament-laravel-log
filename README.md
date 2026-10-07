@@ -2,6 +2,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/saade/filament-laravel-log.svg?style=flat-square)](https://packagist.org/packages/saade/filament-laravel-log)
 [![Total Downloads](https://img.shields.io/packagist/dt/saade/filament-laravel-log.svg?style=flat-square)](https://packagist.org/packages/saade/filament-laravel-log)
+[![Tests](https://img.shields.io/github/actions/workflow/status/saade/filament-laravel-log/run-tests.yml?branch=4.x&label=tests&style=flat-square)](https://github.com/saade/filament-laravel-log/actions/workflows/run-tests.yml)
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/saade/filament-laravel-log/4.x/art/cover1.png" alt="Banner" style="width: 100%; max-width: 800px; border-radius: 10px" />

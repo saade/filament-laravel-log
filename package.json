@@ -2,17 +2,13 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev:scripts": "node bin/build.js --dev",
-        "build:scripts": "node bin/build.js",
-        "dev": "npm-run-all --parallel dev:*",
-        "build": "npm-run-all build:*"
+        "dev": "node bin/build.js --dev",
+        "build": "node bin/build.js"
     },
     "devDependencies": {
         "@shufo/prettier-plugin-blade": "^1.16.2",
         "ace-builds": "^1.44.0",
         "esbuild": "^0.28.2",
-        "npm-run-all": "^4.1.5",
-        "prettier": "^3.9.9",
-        "prettier-plugin-tailwindcss": "^0.8.1"
+        "prettier": "^3.9.9"
     }
 }
