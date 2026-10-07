@@ -4,6 +4,7 @@ namespace Saade\FilamentLaravelLog\Tests;
 
 use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
 use BladeUI\Icons\BladeIconsServiceProvider;
+use Closure;
 use Filament\Actions\ActionsServiceProvider;
 use Filament\Facades\Filament;
 use Filament\FilamentServiceProvider;
@@ -19,6 +20,7 @@ use Illuminate\Foundation\Auth\User;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
+use Saade\FilamentLaravelLog\FilamentLaravelLogPlugin;
 use Saade\FilamentLaravelLog\FilamentLaravelLogServiceProvider;
 use Saade\FilamentLaravelLog\Tests\Fixtures\AdminPanelProvider;
 
@@ -33,18 +35,39 @@ class TestCase extends Orchestra
         mkdir("{$this->root}/storage/logs", recursive: true);
 
         AdminPanelProvider::$logDirs = ["{$this->root}/storage/logs"];
-        AdminPanelProvider::$excludedFilesPatterns = [];
 
         parent::setUp();
 
+        $this->enterPanel();
+    }
+
+    protected function enterPanel(): void
+    {
         $this->actingAs((new User)->forceFill(['id' => 1, 'name' => 'Admin', 'email' => 'admin@example.com']));
 
         Filament::setCurrentPanel(Filament::getPanel('admin'));
     }
 
+    /**
+     * The plugin is configured when the panel is registered, so the
+     * application has to start again for a change to take effect.
+     *
+     * @param  Closure(FilamentLaravelLogPlugin): FilamentLaravelLogPlugin  $callback
+     */
+    protected function configurePlugin(Closure $callback): void
+    {
+        AdminPanelProvider::$configurePluginUsing = $callback;
+
+        $this->refreshApplication();
+
+        $this->enterPanel();
+    }
+
     protected function tearDown(): void
     {
         parent::tearDown();
+
+        AdminPanelProvider::reset();
 
         (new Filesystem)->deleteDirectory($this->root);
     }
