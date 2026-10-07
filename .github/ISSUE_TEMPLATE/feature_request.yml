@@ -1,0 +1,24 @@
+name: Feature request
+description: Suggest something the log viewer should do
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do?
+      description: The situation you are in, more than the solution you have in mind.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What would help?
+      description: How you imagine it working. An example from another log viewer is welcome.
+    validations:
+      required: false
+  - type: textarea
+    id: workaround
+    attributes:
+      label: What do you do today?
+    validations:
+      required: false

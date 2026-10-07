@@ -1,0 +1,41 @@
+name: Bug report
+description: Report a reproducible bug in the package
+labels: [bug]
+body:
+  - type: input
+    id: package-version
+    attributes:
+      label: Package version
+      description: Run `composer show saade/filament-laravel-log`.
+      placeholder: v4.1.1
+    validations:
+      required: true
+  - type: input
+    id: filament-version
+    attributes:
+      label: Filament version
+      placeholder: v5.10.0
+    validations:
+      required: true
+  - type: input
+    id: laravel-version
+    attributes:
+      label: Laravel version
+      placeholder: v13.0.0
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: What you did, what you expected, and what happened instead. Include any error from the browser console or the Laravel log, without secrets.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: How to reproduce
+      description: How the plugin is registered in your panel, and anything unusual about where your log files are (several directories, symbolic links, very large files).
+      render: php
+    validations:
+      required: true

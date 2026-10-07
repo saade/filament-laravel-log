@@ -1,10 +1,17 @@
 {
     "name": "saade/filament-laravel-log",
-    "description": "Access laravel.log file through Filament admin panel",
+    "description": "A log viewer for Filament: read and clear Laravel log files from your panel",
     "license": "MIT",
     "keywords": [
         "saade",
         "laravel",
+        "filament",
+        "filamentphp",
+        "filament-plugin",
+        "log",
+        "logs",
+        "log-viewer",
+        "laravel-log",
         "filament-laravel-log"
     ],
     "authors": [

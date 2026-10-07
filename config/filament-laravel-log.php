@@ -2,12 +2,13 @@
 
 return [
     /**
-     * Maximum amount of lines that editor will render.
+     * The tallest the editor grows, in lines, before it scrolls. The whole
+     * file is loaded whatever this is set to.
      */
     'maxLines' => 50,
 
     /**
-     * Minimum amount of lines that editor will render.
+     * The height of the editor, in lines, when the file is shorter.
      */
     'minLines' => 10,
 
@@ -17,7 +18,8 @@ return [
     'fontSize' => 12,
 
     /**
-     * Limit the number of results returned from the search.
+     * How many files the file picker lists before you search. Searching by
+     * name finds the rest.
      */
     'limit' => 5,
 ];
