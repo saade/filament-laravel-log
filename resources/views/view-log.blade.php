@@ -1,25 +1,18 @@
-@php
-    use Filament\Support\Facades\FilamentAsset;
-@endphp
-
 <x-filament-panels::page>
     <div
         x-load
-        x-load-css="[@js(FilamentAsset::getStyleHref('filament-laravel-log-styles', 'saade/filament-laravel-log'))]"
-        x-load-src="{{ FilamentAsset::getAlpineComponentSrc('filament-laravel-log-alpine', 'saade/filament-laravel-log') }}"
+        x-load-src="{{ \Filament\Support\Facades\FilamentAsset::getAlpineComponentSrc('filament-laravel-log-alpine', 'saade/filament-laravel-log') }}"
         x-data="editor({
             maxLines: @js(config('filament-laravel-log.maxLines')),
             minLines: @js(config('filament-laravel-log.minLines')),
             fontSize: @js(config('filament-laravel-log.fontSize'))
         })"
-        class="fi-log"
     >
-        <div class="fi-log-toolbar">
-            <div class="fi-log-file">
+        <div class="flex items-center justify-between gap-6">
+            <div class="w-full">
                 {{ $this->form }}
             </div>
-
-            <div class="fi-log-actions">
+            <div class="flex items-center space-x-2 shrink-0">
                 {{ $this->jumpToStartAction }}
                 {{ $this->refreshAction }}
                 {{ $this->jumpToEndAction }}
@@ -28,7 +21,7 @@
         </div>
 
         <div
-            class="fi-log-editor ace-filament"
+            class="mt-4 rounded-lg ace-filament"
             x-ref="editor"
             wire:ignore
         ></div>

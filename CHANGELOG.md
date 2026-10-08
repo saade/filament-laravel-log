@@ -7,7 +7,6 @@ All notable changes to `filament-laravel-log` will be documented in this file.
 ### Added
 
 - Support for Filament 5, next to Filament 4.
-- The page ships its own stylesheet, so it looks right, in light and dark mode, without a custom theme. The lines earlier versions asked you to add to your theme can be removed.
 - Compressed (`.gz`) log files are shown decompressed.
 
 ### Changed

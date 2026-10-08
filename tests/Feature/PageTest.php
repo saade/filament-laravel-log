@@ -13,8 +13,7 @@ it('adds the logs page to the panel', function () {
     $this->get('/admin/logs')
         ->assertOk()
         ->assertSee('Logs')
-        ->assertSee('filament-laravel-log-alpine')
-        ->assertSee('filament-laravel-log-styles');
+        ->assertSee('filament-laravel-log-alpine');
 });
 
 it('renders its actions', function () {

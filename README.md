@@ -38,13 +38,16 @@ You can install the package via composer:
 composer require saade/filament-laravel-log:"^4.0"
 ```
 
-Publish the plugin's assets. Filament does this for you when you run `composer update`, through `php artisan filament:upgrade`; to do it by hand:
+> [!IMPORTANT]
+> If you have not set up a custom theme and are using Filament Panels follow the instructions in the [Filament Docs](https://filamentphp.com/docs/5.x/styling/overview#creating-a-custom-theme) first.
 
-```bash
-php artisan filament:assets
+After setting up a custom theme add the plugin's views to your theme css file or your app's css file if using the standalone packages.
+
+```css
+@import '../../../../vendor/saade/filament-laravel-log/resources/css/filament-laravel-log.css';
+
+@source '../../../../vendor/saade/filament-laravel-log/resources/views/**/*.blade.php';
 ```
-
-The page comes with its own stylesheet, so it needs no custom theme. If your theme imports `filament-laravel-log.css` or lists the plugin's views as a `@source`, as earlier versions asked, you can remove those lines.
 
 ## Usage
 
