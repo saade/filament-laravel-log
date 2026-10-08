@@ -21,6 +21,8 @@ class AdminPanelProvider extends PanelProvider
 
     public static bool | Closure $authorize = true;
 
+    public static bool $isDefault = true;
+
     /**
      * @var (Closure(FilamentLaravelLogPlugin): FilamentLaravelLogPlugin) | null
      */
@@ -31,6 +33,7 @@ class AdminPanelProvider extends PanelProvider
         static::$logDirs = [];
         static::$excludedFilesPatterns = [];
         static::$authorize = true;
+        static::$isDefault = true;
         static::$configurePluginUsing = null;
     }
 
@@ -46,7 +49,7 @@ class AdminPanelProvider extends PanelProvider
         }
 
         return $panel
-            ->default()
+            ->default(static::$isDefault)
             ->id('admin')
             ->path('admin')
             ->plugin($plugin);

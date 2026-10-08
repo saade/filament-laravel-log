@@ -7,10 +7,10 @@ use Saade\FilamentLaravelLog\Pages\ViewLog;
 class InspectableViewLog extends ViewLog
 {
     /**
-     * @return array<string>
+     * @return array<string, string>
      */
     public function listedFiles(): array
     {
-        return $this->getFileNames($this->getFinder())->values()->sort()->values()->all();
+        return $this->getFileNames($this->getFinder())->all();
     }
 }

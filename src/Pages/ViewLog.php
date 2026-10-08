@@ -4,6 +4,7 @@ namespace Saade\FilamentLaravelLog\Pages;
 
 use BackedEnum;
 use Filament\Forms;
+use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Filament\Panel;
 use Filament\Schemas\Schema;
@@ -39,6 +40,9 @@ class ViewLog extends Page
                     ->getSearchResultsUsing(
                         fn (string $query) => $this->getFileNames($this->getFinder()->name("*{$query}*"))
                     )
+                    ->getOptionLabelUsing(
+                        fn (?string $value): ?string => filled($value) ? $this->getFileLabel($value) : null
+                    )
                     ->afterStateUpdated(fn () => $this->refresh()),
             ]);
     }
@@ -53,7 +57,20 @@ class ViewLog extends Page
             return '';
         }
 
-        return File::get($logFile);
+        if (! is_readable($logFile)) {
+            $this->notifyFailure('unreadable');
+
+            return '';
+        }
+
+        $content = File::get($logFile);
+
+        if (str_ends_with(strtolower($logFile), '.gz') && function_exists('gzdecode')) {
+            $content = @gzdecode($content) ?: $content;
+        }
+
+        // Livewire sends the content as JSON, which refuses invalid UTF-8.
+        return mb_scrub($content, 'UTF-8');
     }
 
     public function clear(): void
@@ -66,6 +83,12 @@ class ViewLog extends Page
 
         if ($logFile === null) {
             $this->logFile = null;
+
+            return;
+        }
+
+        if (! is_writable($logFile)) {
+            $this->notifyFailure('unwritable');
 
             return;
         }
@@ -116,21 +139,69 @@ class ViewLog extends Page
         return false;
     }
 
+    protected function notifyFailure(string $reason): void
+    {
+        Notification::make()
+            ->danger()
+            ->title(__("log::filament-laravel-log.notifications.{$reason}"))
+            ->send();
+    }
+
     protected function getFinder(): Finder
     {
-        return Finder::create()
+        $finder = Finder::create()
             ->ignoreDotFiles(true)
             ->ignoreUnreadableDirs()
             ->files()
-            ->in(FilamentLaravelLogPlugin::get()->getLogDirs())
-            ->notName(FilamentLaravelLogPlugin::get()->getExcludedFilesPatterns());
+            ->notName(FilamentLaravelLogPlugin::get()->getExcludedFilesPatterns())
+            ->sortByModifiedTime()
+            ->reverseSorting();
+
+        $logDirs = array_filter(FilamentLaravelLogPlugin::get()->getLogDirs(), is_dir(...));
+
+        // A finder with no directory to look in throws when it is read.
+        return $logDirs ? $finder->in($logDirs) : $finder->append([]);
     }
 
     protected function getFileNames($files): Collection
     {
         return collect($files)->mapWithKeys(function (SplFileInfo $file) {
-            return [$file->getRealPath() => $file->getRealPath()];
+            return [$file->getRealPath() => $this->getFileLabel($file->getRealPath())];
         });
+    }
+
+    /**
+     * The path of a file as the picker shows it: from its log directory
+     * down, with the name of that directory in front when there are several.
+     */
+    protected function getFileLabel(string $path): string
+    {
+        $logDirs = collect(FilamentLaravelLogPlugin::get()->getLogDirs())
+            ->map(fn (string $logDir): string | false => realpath($logDir))
+            ->filter()
+            ->unique()
+            ->values();
+
+        $logDir = $logDirs
+            ->sortByDesc(fn (string $logDir): int => strlen($logDir))
+            ->first(fn (string $logDir): bool => str_starts_with($path, $logDir . DIRECTORY_SEPARATOR));
+
+        if ($logDir === null) {
+            return $path;
+        }
+
+        $label = substr($path, strlen($logDir) + 1);
+
+        if ($logDirs->count() === 1) {
+            return $label;
+        }
+
+        $name = basename($logDir);
+
+        // Two directories with the same name could not be told apart.
+        return $logDirs->filter(fn (string $logDir): bool => basename($logDir) === $name)->count() > 1
+            ? $path
+            : $name . DIRECTORY_SEPARATOR . $label;
     }
 
     public static function getNavigationGroup(): string | UnitEnum | null
@@ -180,7 +251,7 @@ class ViewLog extends Page
 
     public static function getSlug(?Panel $panel = null): string
     {
-        return static::$slug ?? FilamentLaravelLogPlugin::get()->getSlug();
+        return static::$slug ?? FilamentLaravelLogPlugin::get($panel)->getSlug();
     }
 
     public function getTitle(): string

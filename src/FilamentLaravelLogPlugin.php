@@ -5,7 +5,6 @@ namespace Saade\FilamentLaravelLog;
 use BackedEnum;
 use Closure;
 use Filament\Contracts\Plugin;
-use Filament\FilamentManager;
 use Filament\Panel;
 use Filament\Support\Concerns\EvaluatesClosures;
 use Filament\Support\Icons\Heroicon;
@@ -57,9 +56,10 @@ class FilamentLaravelLogPlugin implements Plugin
         return app(static::class);
     }
 
-    public static function get(): FilamentManager | static
+    public static function get(?Panel $panel = null): static
     {
-        return filament(app(static::class)->getId());
+        /** @var static */
+        return ($panel ?? filament()->getCurrentOrDefaultPanel())->getPlugin(app(static::class)->getId());
     }
 
     public function register(Panel $panel): void

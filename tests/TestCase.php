@@ -23,6 +23,7 @@ use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
 use Saade\FilamentLaravelLog\FilamentLaravelLogPlugin;
 use Saade\FilamentLaravelLog\FilamentLaravelLogServiceProvider;
 use Saade\FilamentLaravelLog\Tests\Fixtures\AdminPanelProvider;
+use Saade\FilamentLaravelLog\Tests\Fixtures\SecondPanelProvider;
 
 class TestCase extends Orchestra
 {
@@ -90,6 +91,7 @@ class TestCase extends Orchestra
             FilamentServiceProvider::class,
             FilamentLaravelLogServiceProvider::class,
             AdminPanelProvider::class,
+            SecondPanelProvider::class,
         ];
     }
 
