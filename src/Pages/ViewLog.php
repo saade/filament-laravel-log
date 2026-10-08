@@ -41,24 +41,32 @@ class ViewLog extends Page
 
     public function read(): string
     {
-        if (! $this->logFile || ! $this->fileResidesInLogDirs($this->logFile)) {
+        $logFile = $this->resolveLogFile();
+
+        if ($logFile === null) {
             $this->logFile = null;
 
             return '';
         }
 
-        return File::get($this->logFile);
+        return File::get($logFile);
     }
 
     public function clear(): void
     {
-        if (! $this->logFile || ! $this->fileResidesInLogDirs($this->logFile)) {
+        if (! $this->isClearable()) {
+            return;
+        }
+
+        $logFile = $this->resolveLogFile();
+
+        if ($logFile === null) {
             $this->logFile = null;
 
             return;
         }
 
-        File::put($this->logFile, '');
+        File::put($logFile, '');
 
         $this->refresh();
     }
@@ -68,10 +76,41 @@ class ViewLog extends Page
         $this->dispatch('logContentUpdated', content: $this->read());
     }
 
+    /**
+     * The real path of the selected file, or null when it is not one of the
+     * files this page lists. The value comes from the browser, so it cannot
+     * be trusted to be one of the options it was given.
+     */
+    protected function resolveLogFile(): ?string
+    {
+        if (blank($this->logFile)) {
+            return null;
+        }
+
+        $logFile = realpath($this->logFile);
+
+        if (($logFile === false) || (! $this->fileResidesInLogDirs($logFile))) {
+            return null;
+        }
+
+        return $logFile;
+    }
+
     protected function fileResidesInLogDirs(string $logFile): bool
     {
-        return collect(FilamentLaravelLogPlugin::get()->getLogDirs())
-            ->contains(fn (string $logDir) => str_contains($logFile, $logDir));
+        $logFile = realpath($logFile);
+
+        if ($logFile === false) {
+            return false;
+        }
+
+        foreach ($this->getFinder() as $file) {
+            if ($file->getRealPath() === $logFile) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     protected function getFinder(): Finder
