@@ -48,5 +48,9 @@ it('sends the file again when it is refreshed', function () {
 it('hides the clear action on a page that is not clearable', function () {
     Livewire::test(ReadOnlyViewLog::class)
         ->assertActionHidden('clear')
-        ->assertActionVisible('refresh');
+        ->assertActionVisible('refresh')
+        ->assertSeeHtml("mountAction('refresh')")
+        ->assertDontSeeHtml("mountAction('clear')");
+
+    Livewire::test(ViewLog::class)->assertSeeHtml("mountAction('clear')");
 });

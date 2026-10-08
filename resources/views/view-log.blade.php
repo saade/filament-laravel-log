@@ -12,12 +12,15 @@
             <div class="w-full">
                 {{ $this->form }}
             </div>
-            <div class="flex items-center space-x-2 shrink-0">
-                {{ $this->jumpToStartAction }}
-                {{ $this->refreshAction }}
-                {{ $this->jumpToEndAction }}
-                {{ $this->clearAction }}
-            </div>
+            <x-filament::actions
+                :actions="[
+                    $this->jumpToStartAction,
+                    $this->refreshAction,
+                    $this->jumpToEndAction,
+                    $this->clearAction,
+                ]"
+                class="shrink-0"
+            />
         </div>
 
         <div
