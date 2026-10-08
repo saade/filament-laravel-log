@@ -2,13 +2,10 @@
 
 return [
     'navigation' => [
-        'group' => 'Sistema',
         'label' => 'Registros',
     ],
 
     'page' => [
-        'title' => 'Registros',
-
         'form' => [
             'placeholder' => 'Selecione ou pesquise um arquivo de log...',
         ],

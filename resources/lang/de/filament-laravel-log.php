@@ -2,13 +2,10 @@
 
 return [
     'navigation' => [
-        'group' => 'System',
         'label' => 'Logs',
     ],
 
     'page' => [
-        'title' => 'Logs',
-
         'form' => [
             'placeholder' => 'Logfile auswählen oder suchen...',
         ],

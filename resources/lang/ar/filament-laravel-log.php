@@ -2,13 +2,10 @@
 
 return [
     'navigation' => [
-        'group' => 'النظام',
         'label' => 'سجلات النظام',
     ],
 
     'page' => [
-        'title' => 'سجل',
-
         'form' => [
             'placeholder' => 'اختر أو ابحث عن ملف سجل...',
         ],

@@ -2,13 +2,10 @@
 
 return [
     'navigation' => [
-        'group' => 'Rendszer',
         'label' => 'Hiba napló',
     ],
 
     'page' => [
-        'title' => 'Hiba napló',
-
         'form' => [
             'placeholder' => 'Fájl keresése vagy kiválasztása...',
         ],

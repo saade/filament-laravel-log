@@ -2,13 +2,10 @@
 
 return [
     'navigation' => [
-        'group' => 'System',
         'label' => 'Logs',
     ],
 
     'page' => [
-        'title' => 'Logs',
-
         'form' => [
             'placeholder' => 'Select or search a log file...',
         ],
@@ -19,8 +16,8 @@ return [
             'label' => 'Clear',
 
             'modal' => [
-                'heading' => 'Clear Site Logs?',
-                'description' => 'Are you sure you want to clear all site logs?',
+                'heading' => 'Clear this log file?',
+                'description' => 'Everything in the selected file will be deleted. This cannot be undone.',
 
                 'actions' => [
                     'confirm' => 'Clear',
@@ -39,5 +36,10 @@ return [
         'refresh' => [
             'label' => 'Refresh',
         ],
+    ],
+
+    'notifications' => [
+        'unreadable' => 'The file could not be read.',
+        'unwritable' => 'The file could not be cleared.',
     ],
 ];

@@ -2,13 +2,10 @@
 
 return [
     'navigation' => [
-        'group' => 'Systeem',
         'label' => 'Logboeken',
     ],
 
     'page' => [
-        'title' => 'Logboeken',
-
         'form' => [
             'placeholder' => 'Selecteer of zoek een logbestand...',
         ],

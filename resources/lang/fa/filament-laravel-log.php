@@ -2,20 +2,15 @@
 
 return [
     'navigation' => [
-        'group' => 'سیستم',
         'label' => 'لاگ‌ها',
     ],
 
     'page' => [
-        'title' => 'لاگ‌ها',
-
         'form' => [
             'placeholder' => 'یک فایل لاگ را انتخاب یا جستجو کنید...',
         ],
     ],
-    'navigation' => [
-        'label' => 'لاگ‌ها',
-    ],
+
     'actions' => [
         'clear' => [
             'label' => 'پاک کردن',
