@@ -9,6 +9,8 @@ export default ({
     /** @type {ace.Ace.Editor} */
     editor: null,
 
+    listener: null,
+
     init() {
         this.editor = ace.edit(this.$refs.editor, {
             mode: 'ace/mode/ini',
@@ -18,13 +20,19 @@ export default ({
             fontSize
         });
 
-        window.addEventListener('logContentUpdated', e => {
-            this.editor.session.setValue(e.detail.content)
-        })
+        this.listener = (event) => this.editor.session.setValue(event.detail.content)
+
+        window.addEventListener('logContentUpdated', this.listener)
+    },
+
+    destroy() {
+        window.removeEventListener('logContentUpdated', this.listener)
+
+        this.editor.destroy()
     },
 
     jumpToEnd() {
-        this.editor.gotoLine(this.editor.session.doc.$lines.length)
+        this.editor.gotoLine(this.editor.session.getLength())
     },
 
     jumpToStart() {
