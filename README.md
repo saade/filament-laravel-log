@@ -19,6 +19,7 @@ A log viewer for [Filament](https://filamentphp.com): read your Laravel log file
 - Clear a log file
 - Log files from several directories, found by name
 - Ignored file patterns
+- Compressed (`.gz`) log files
 - Access restricted to the users you choose
 
 # Version compatibility
@@ -37,16 +38,13 @@ You can install the package via composer:
 composer require saade/filament-laravel-log:"^4.0"
 ```
 
-> [!IMPORTANT]
-> If you have not set up a custom theme and are using Filament Panels follow the instructions in the [Filament Docs](https://filamentphp.com/docs/5.x/styling/overview#creating-a-custom-theme) first.
+Publish the plugin's assets. Filament does this for you when you run `composer update`, through `php artisan filament:upgrade`; to do it by hand:
 
-After setting up a custom theme add the plugin's views to your theme css file or your app's css file if using the standalone packages.
-
-```css
-@import '../../../../vendor/saade/filament-laravel-log/resources/css/filament-laravel-log.css';
-
-@source '../../../../vendor/saade/filament-laravel-log/resources/views/**/*.blade.php';
+```bash
+php artisan filament:assets
 ```
+
+The page comes with its own stylesheet, so it needs no custom theme. If your theme imports `filament-laravel-log.css` or lists the plugin's views as a `@source`, as earlier versions asked, you can remove those lines.
 
 ## Usage
 
@@ -104,7 +102,7 @@ FilamentLaravelLogPlugin::make()
 
 Only the files the page lists can be opened or cleared. An excluded file cannot be reached by typing its path.
 
-The file picker shows the first 5 files; type part of a name to find the others. Change that number with the `limit` key of the [config file](#customizing-the-editor-appearance).
+The file picker lists the 5 most recently changed files; type part of a name to find the others. Change that number with the `limit` key of the [config file](#customizing-the-editor-appearance).
 
 ### Authorization
 

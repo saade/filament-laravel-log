@@ -7,12 +7,26 @@ All notable changes to `filament-laravel-log` will be documented in this file.
 ### Added
 
 - Support for Filament 5, next to Filament 4.
+- The page ships its own stylesheet, so it looks right, in light and dark mode, without a custom theme. The lines earlier versions asked you to add to your theme can be removed.
+- Compressed (`.gz`) log files are shown decompressed.
+
+### Changed
+
+- The file picker lists the most recently changed files first and shows each file by its path from the log directory, not its full path on the server.
+- The confirmation for clearing says that it clears the selected file. It used to say "all site logs".
+- The editor is built with Ace 1.44.
 
 ### Fixed
 
 - The page only opens and clears the files it lists. A file excluded with `excludedFilesPatterns()`, a hidden file, or a path outside the log directories is refused.
 - Log directories that are reached through a symbolic link, as on Envoyer, Deployer and Forge zero-downtime deployments, showed their files as empty ([#44](https://github.com/saade/filament-laravel-log/issues/44), [#52](https://github.com/saade/filament-laravel-log/issues/52)).
 - Clearing is refused when the page is not clearable, not only hidden.
+- In an application with several panels, the plugin failed with "Plugin [filament-laravel-log] is not registered for panel" when the default panel was not one that uses it, and every panel got the slug of the default panel's plugin ([#41](https://github.com/saade/filament-laravel-log/issues/41)).
+- A log directory that does not exist broke the page. It is skipped now.
+- A file that is not valid UTF-8 broke the page. Its invalid bytes are shown as `?`.
+- A file that cannot be read or cleared shows a notification and no longer breaks the page.
+- The Spanish translation had no navigation label, and the Persian one defined its navigation twice.
+- The editor's listener is removed when the page is left, so it no longer piles up in panels with SPA mode.
 
 ## v4.1.1 - 2026-08-13
 
