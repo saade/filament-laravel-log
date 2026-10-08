@@ -1,39 +1,67 @@
-@tailwind utilities;
-
-html.dark .ace-filament .ace_scrollbar::-webkit-scrollbar {
-    @apply w-3;
+.fi-log-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem 1.5rem;
 }
 
-html.dark .ace-filament .ace_scrollbar::-webkit-scrollbar-track {
-    @apply bg-gray-900;
+.fi-log-file {
+    flex: 1 1 16rem;
+    min-width: 0;
 }
 
-html.dark .ace-filament .ace_scrollbar::-webkit-scrollbar-thumb {
-    @apply bg-gray-800 rounded-[4px];
+.fi-log-actions {
+    display: flex;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-html.dark .ace-filament .ace_gutter {
-    @apply bg-gray-900 text-gray-400;
-}
-
-html.dark .ace-filament .ace_print-margin {
-    @apply hidden;
-}
-
-html.dark .ace-filament {
-    @apply bg-gray-900 ring-1 ring-white/20 text-gray-200;
+.fi-log-editor {
+    margin-top: 1rem;
+    border-radius: 0.5rem;
 }
 
 html:not(.dark) .ace-filament {
-    @apply ring-1 ring-gray-950/10;
+    box-shadow: 0 0 0 1px color-mix(in oklab, var(--gray-950) 10%, transparent);
+}
+
+html.dark .ace-filament {
+    background-color: var(--gray-900);
+    box-shadow: 0 0 0 1px rgb(255 255 255 / 0.2);
+    color: var(--gray-200);
+}
+
+html.dark .ace-filament .ace_scrollbar::-webkit-scrollbar {
+    width: 0.75rem;
+}
+
+html.dark .ace-filament .ace_scrollbar::-webkit-scrollbar-track {
+    background-color: var(--gray-900);
+}
+
+html.dark .ace-filament .ace_scrollbar::-webkit-scrollbar-thumb {
+    background-color: var(--gray-800);
+    border-radius: 4px;
+}
+
+html.dark .ace-filament .ace_gutter {
+    background-color: var(--gray-900);
+    color: var(--gray-400);
+}
+
+html.dark .ace-filament .ace_print-margin {
+    display: none;
 }
 
 html.dark .ace-filament .ace_cursor {
-    @apply text-gray-200;
+    color: var(--gray-200);
 }
 
 html.dark .ace-filament .ace_marker-layer .ace_selection {
-    @apply bg-primary-500/75;
+    background-color: color-mix(in oklab, var(--primary-500) 75%, transparent);
 }
 
 html.dark .ace-filament.ace_multiselect .ace_selection.ace_start {

@@ -4,6 +4,7 @@ namespace Saade\FilamentLaravelLog;
 
 use Filament\Support\Assets\AlpineComponent;
 use Filament\Support\Assets\Asset;
+use Filament\Support\Assets\Css;
 use Filament\Support\Facades\FilamentAsset;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
@@ -60,6 +61,7 @@ class FilamentLaravelLogServiceProvider extends PackageServiceProvider
     {
         return [
             AlpineComponent::make('filament-laravel-log-alpine', __DIR__ . '/../resources/dist/filament-laravel-log.js'),
+            Css::make('filament-laravel-log-styles', __DIR__ . '/../resources/css/filament-laravel-log.css')->loadedOnRequest(),
         ];
     }
 }
